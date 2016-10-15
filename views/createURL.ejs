@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <% include partials/head %>
+  </head>
+  <body style="font-size:61px; padding:150px;">
+
+    <% include partials/header %>
+
+
+    <p>Enter URL</p>
+    <form action="/submitURL" method="POST" style="margin:0px;">
+     <label for="longURL" style="font-size:40px; padding: 15px">http://www.</label>
+
+      <input id="longURL" type="text" name="longURL" placeholder="example.com" style="margin-bottom: 20px;font-size:15px;width: 250px; height: 30px">
+      <input type="submit" value="Submit">
+
+
+    </form>
+
+  </body>
+</html>
