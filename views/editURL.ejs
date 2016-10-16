@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <% include partials/head %>
+  </head>
+  <body style="font-size:61px; padding:150px;">
+
+    <% include partials/header %>
+
+    <p style="font-size: 50px;">Edit longURL:<p>
+
+    <form method="POST" action=<%= "/url/edit/" + shortURL %>>
+    <input id="longURL" name="longURL" type="text" placeholder=<%= longURL %> style="padding: 5px; font-size: 50px; width: 700px">
+    <input type="submit" value="Update">
+    </form>
+
+  </body>
+</html>

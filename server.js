@@ -40,30 +40,36 @@ app.get("/url/long/:id", (req, res) => {
 })
 
 
-//--------------Next---------------------------
-app.post("/url/edit", (req, res) => {
-res.redirect("urls/urlDatabase")
-})
+//--------------Done---------------------------
 // This page shows all the url in shortform
 app.get("/myList", (req, res) => {
   let test = {database: urlDatabase,
     shortURL: Object.keys(urlDatabase)};
   res.render("myList", test);
 });
-//--------------lineEnd------------------------
-
 //Delete Link
 app.post("/url/delete/:id", (req, res) => {
   let link = req.params.id;
   delete urlDatabase[link];
   res.redirect("/myList");
 })
-
-
-app.post("/url/edit/:id", (req, res) => {
-  console.log(req.params.id)
-  res.send("Doki");
+//Edit Link
+app.get("/url/edit/:id", (req, res) => {
+  let urlObject = { shortURL: req.params.id,
+    longURL: urlDatabase[req.params.id] };
+  res.render("editURL", urlObject);
 })
+app.post("/url/edit/:id", (req, res) => {
+  let urlObject = { shortURL: req.params.id,
+    longURL: urlDatabase[req.params.id] };
+    console.log("body ----------->" + req.body.longURL)
+    console.log("params --------->" + req.params.id)
+  urlDatabase[req.params.id] = req.body.longURL;
+  res.redirect("/myList");
+})
+//--------------lineEnd------------------------
+
+
 
 
 //Database
