@@ -11,6 +11,47 @@
             <li><a href="/createURL" method="GET" style="font-size: 20px">New</a></li>
             <li><a href="/myList" method="GET" style="font-size: 20px">MyList</a></li>
             </ul>
+            <div class="navbar-brand">
+            <div class="navbar-brand">
+            <div class="navbar-brand">
+            <div class="navbar-brand">
+            <div class="navbar-brand"><div class="navbar-brand">
+            </div><div class="navbar-brand">
+            </div><div class="navbar-brand">
+            </div><div class="navbar-brand">
+            </div><div class="navbar-brand">
+            </div><div class="navbar-brand">
+            </div><div class="navbar-brand">
+            </div><div class="navbar-brand">
+            </div><div class="navbar-brand">
+            </div><div class="navbar-brand">
+            </div><div class="navbar-brand">
+            </div><div class="navbar-brand">
+            </div><div class="navbar-brand">
+            </div><div class="navbar-brand">
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+
+            <% if(!username) { %>
+            <div class="navbar-brand">
+                <form  method="POST" action="login">
+                <input class="navbar-nav" type="text" name="username" placeholder="username" style="font-size:15px;width: 100px; height: 30px"> <input class="navbar-default" type="submit" value="login" style="font-size: 20px">
+            </form>
+            </div>
+
+            <% } else { %>
+
+            <div class="navbar-brand">
+            <form  method="POST" action="logout">
+            <p class="navbar-nav" style="margin-left:10px"> <%= "Hello  " + username %> </p><input class="navbar-default" type="submit" value="logout" style="font-size: 20px; margin-left: 5px">
+            </form>
+            </div>
+            <% } %>
+
         </div>
     </div>
 </nav>
