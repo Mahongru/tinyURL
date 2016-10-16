@@ -55,8 +55,8 @@ app.get("/myList", (req, res) => {
 //Delete Link
 app.post("/url/delete/:id", (req, res) => {
   let link = req.params.id;
-  delete urlDatabase.link;
-  res.render("myList");
+  delete urlDatabase[link];
+  res.redirect("/myList");
 })
 
 
