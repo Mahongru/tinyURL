@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 var userDB = {};
 var urlDatabase = {
   "b2xVn2": "http://www.lighthouselabs.ca",
@@ -32,10 +33,12 @@ module.exports = ( function() {
       res.redirect(400, 'register')
     } else {
       let randomID = generateString();
+      let password = req.body.password;
+      let hashed_password = bcrypt.hashSync(password, 10);
       userDB[randomID] = {
         id: randomID,
         email: req.body.email,
-        password: req.body.password
+        password: hashed_password
       }
       let emailArray = userDB[randomID]
       res.cookie("userID", userDB[randomID]);
@@ -73,9 +76,10 @@ module.exports = ( function() {
     //No cookie, Authenticates login info.
     for (var id in userDB) {
       let user = userDB[id];
-      if (email === user.email && password === user.password) {
+      if (email === user.email && (bcrypt.compareSync(password, user.password))) {
         res.cookie('userID', userDB[id])
         console.log("successful login")
+        console.log(userDB[id])
         res.redirect('homepage')
       } else {
         res.redirect (400, 'login')

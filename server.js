@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const methodOverride = require ("method-override");
 const cookieParser = require("cookie-parser");
-// const authentication = require('./routes/authentication');
+const bcrypt = require('bcrypt');
 const url = require('./routes/url');
 const app = express();
 
@@ -22,5 +22,4 @@ app.use(bodyParser.urlencoded({
 }));
 
 //Routes
-// app.use('/', authentication)
 app.use('/' , url)
