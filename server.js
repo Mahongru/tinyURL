@@ -3,7 +3,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const methodOverride = require ("method-override");
 const cookieParser = require("cookie-parser");
-const bcrypt = require('bcrypt');
 const url = require('./routes/url');
 const app = express();
 

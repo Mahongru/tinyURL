@@ -1,16 +1,9 @@
+'use strict';
 const express = require('express');
 const bcrypt = require('bcrypt');
-var userDB = {};
-var urlDatabase = {
-  "b2xVn2": "http://www.lighthouselabs.ca",
-  "9sm5xK": "http://www.google.com"
-};
-var keyObject = ["b2xVn2","9sm5xK"];
 
 module.exports = ( function() {
-  'use strict';
-  var router = express.Router();
-
+  const router = express.Router();
   router.get("/", (req, res) => {
     res.redirect('login');
   });
@@ -56,14 +49,6 @@ module.exports = ( function() {
     }
   })
   router.post('/login', (req, res) => {
-    let email = req.body.email;
-    let password = req.body.password;
-
-    //password is null;
-    if (password === "") {
-      res.redirect(400, 'login')
-    }
-    //If there is a cookie
     if (req.cookies["userID"]) {
       for (var id in userDB) {
         let loginID = userDB[userCookie.id]
@@ -73,13 +58,19 @@ module.exports = ( function() {
         }
       }
     }
+
+    let email = req.body.email;
+    let password = req.body.password;
+    //password is null;
+    if (password === "") {
+      res.redirect(400, 'login')
+    }
+    //If there is a cookie
     //No cookie, Authenticates login info.
     for (var id in userDB) {
       let user = userDB[id];
       if (email === user.email && (bcrypt.compareSync(password, user.password))) {
         res.cookie('userID', userDB[id])
-        console.log("successful login")
-        console.log(userDB[id])
         res.redirect('homepage')
       } else {
         res.redirect (400, 'login')
@@ -165,12 +156,8 @@ module.exports = ( function() {
     urlDatabase[req.params.id] = req.body.longURL;
     res.redirect("/myList");
   })
-
-
-
   return router
 })();
-
 function generateString() {
   var shortURL = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -178,3 +165,9 @@ function generateString() {
     shortURL += possible.charAt(Math.floor(Math.random() * possible.length));
   return shortURL;
 };
+var userDB = {};
+var urlDatabase = {
+  "b2xVn2": "http://www.lighthouselabs.ca",
+  "9sm5xK": "http://www.google.com"
+};
+var keyObject = ["b2xVn2","9sm5xK"];
