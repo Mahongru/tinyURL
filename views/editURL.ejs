@@ -3,16 +3,12 @@
   <head>
   <% include partials/head %>
   </head>
-  <body style="font-size:61px; padding:150px;">
-
+  <body>
     <% include partials/header %>
-
-    <p style="font-size: 50px;">Edit longURL:<p>
-
+    <p>Edit longURL:<p>
     <form method="POST" action=<%= "/url/edit/" + shortURL %>>
-    <input id="longURL" name="longURL" type="text" placeholder=<%= longURL %> style="padding: 5px; font-size: 50px; width: 700px">
+    <input name="longURL" type="text" placeholder=<%= longURL %> >
     <input type="submit" value="Update">
     </form>
-
   </body>
 </html>
